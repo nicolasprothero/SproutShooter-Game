@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.typekit.net/tuu6vwh.css">
+
+    <title>Shooter Game</title>
+    <meta name="description" content="A roguelike survival game">
+    <meta name="author" content="Nicolas Prothero">
+    <meta name="theme-color" content="#fe5c6f">
+
+
+    <!-- FAVICON
+    <link rel="icon" type="img/ico" href="img/favicon.ico">
+     -->
+</head>
+<body>
+    <img src="./img/titleText.png" id="titleText">
+
+    <div id="heartHUD">
+        <img src="./img/heartFilled.png" id="heart1" style="transform: translate(70%, 40%); width: 40px; height: 40px;">
+        <img src="./img/heartFilled.png" id="heart2" style="transform: translate(40%, 40%); width: 40px; height: 40px;">
+        <img src="./img/heartFilled.png" id="heart3" style="transform: translate(10%, 40%); width: 40px; height: 40px;">
+    </div>
+
+
+    <div id="waveText">
+        <span>WAVE: <span id="waveNumber">1</span></span>
+    </div>
+    <div id="scoreText">
+        <span>Score: <span id="scoreEl">0</span></span>
+    </div>
+
+    <!-- SCOREBOARD -->
+    <div id="statText">
+        <span>Enemies Killed: <span id="enemiesStatEl">0</span></span>
+        <br>
+        <br>
+        <span>Movement Speed: <span id="moveStatEl">0</span></span>
+        <br>
+        <span>Damage: <span id="damageStatEl">0</span></span>
+        <br>
+        <span>Firerate: <span id="fireStatEl">0</span> bps</span>
+        <br>
+        <span>Bullet Speed: <span id="bulletStatEl">0</span></span>
+        <br>
+        <br>
+        <span>Enemy Health: <span id="enemyHealthEl">0</span></span>
+    </div>
+
+    <!-- START GAME SCREEN-->
+    <div id="startGamePopup">
+        <h1> BALL SHOOTER</h1>
+        <label>A <i>roguelike survival</i> by Nicolas Prothero</label>
+        <br>
+        <button id="startButtonEl">START GAME</button>
+    </div>
+
+    <!--GAMEOVER SCREEN -->
+    <div id="gameOverPopup">
+        <h1>YOU DIED!!</h1>
+        <label>SCORE: </label><label id="gameOverScore">0</label>
+        <br>
+        <label>ENEMIES SLAIN: </label><label id="enemiesSlainScore">0</label>
+        <br>
+        <button id="copybuttonEl">SHARE</button><br>
+        <button id="buttonEl">RESTART GAME</button>
+    </div>
+
+    <canvas></canvas>
+
+    <h2><a href="https://nicolasprothero.com" target="_blank">player guide</a> / <a href="https://nicolasprothero.com" target="_blank">creator</a></h2>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./js/audio.js"></script>
+    <script src="./js/classes.js"></script>
+    <script src="./index.js"></script>
+
+</body>
+</html>

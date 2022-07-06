@@ -1,0 +1,155 @@
+body {
+    margin: 0;
+    background-color: #183442;
+}
+
+canvas {
+    background-color: #effedd;
+    padding: 0;
+    margin: auto;
+    display: block;
+
+    border: 10px solid #effedd;
+}
+
+h1 {
+    font-size: 50px;
+    color: #effedd;
+    padding-top: 10px;
+}
+
+h2 {
+    padding-top: 20px;
+    text-align: center;
+    font-size: 20px;
+    color: #effedd;
+}
+
+a {
+    text-decoration: none;
+    color: inherit
+}
+
+* {
+    touch-action: none;
+    image-rendering: pixelated;
+
+    font-family: bitcount-grid-single-square,sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+#titleText {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    height: 50px;
+}
+
+#heartHUD{
+    padding-top: 20px;
+    display: none;
+    position: absolute;
+    user-select: none;
+}
+
+#waveText {
+    display: none;
+    position: absolute;
+    transform: translate(-50%);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #183442;
+    left: 50%;
+    color: #183442; 
+    padding: 8px; 
+    font-size: 50px; 
+    font-weight: 900;
+    user-select: none
+}
+
+#scoreText {
+    display: none;
+    position: absolute;
+    transform: translate(-50%, 100%);
+    left: 50%;
+    color: #183442; 
+    padding: 8px; 
+    font-size: 30px; 
+    font-weight: 400;
+    user-select: none
+}
+
+#statText {
+    display: none;
+    position: absolute; 
+    color: #effedd; 
+    padding: 8px; 
+    font-size: 24px; 
+    font-weight: 300;
+    user-select: none;
+    top: 180px;
+    transform: translate(20px);
+}
+
+#startGamePopup {
+    display: block;
+    position: absolute;
+    color:#effedd;
+    background-color: #183442;
+    text-align: center;
+}
+
+#gameOverPopup {
+    display: none;
+    position: absolute;
+    background-color: #183442;
+    color: #effedd;
+    text-align: center;
+}
+
+#gameOverScore {
+    font-size: 35px;
+    margin: 20px;
+}
+
+#enemiesSlainScore {
+    font-size: 35px;
+    margin: 20px;
+}
+
+#startButtonEl {
+    font-size: 20px;
+    margin-top: 30px;
+    border-radius: 8px;
+    background-color: #fe5c6f;
+    border: none;
+    color: #effedd;
+    padding: 16px 32px;
+    cursor: pointer;
+}
+
+#buttonEl {
+    font-size: 20px;
+    margin-top: 15px;
+    border-radius: 8px;
+    background-color: #fe5c6f;
+    border: none;
+    color: #effedd;
+    padding: 16px 32px;
+    cursor: pointer;
+}
+
+#copybuttonEl {
+    font-size: 18px;
+    margin-top: 30px;
+    border-radius: 8px;
+    background-color: #59ce7c;
+    border: none;
+    color: #effedd;
+    padding: 12px 24px;
+    cursor: pointer;
+}
