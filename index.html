@@ -51,15 +51,22 @@
 
     <!-- START GAME SCREEN-->
     <div id="startGamePopup">
-        <h1> BALL SHOOTER</h1>
-        <label>A <i>roguelike survival</i> by Nicolas Prothero</label>
+        <h1 style="margin-bottom: 5px;"> BALL SHOOTER</h1>
+        <h2>A <i>roguelike survival</i> by Nicolas Prothero</h2>
         <br>
+        <h3 style="margin: 0px;">pick a class:</h3>
+        <button id="classRifleButtonEl"><img src="./img/Marksman.png" style="width: 70px; height: 70px;"><br>RIFLEMAN</button>
+        <button id="classSniperButtonEl"><img src="./img/Sniper.png" style="width: 70px; height: 70px;"><br>SNIPER</button>
+        <button id="classSoymilkButtonEl"><img src="./img/Soymilk.png" style="width: 70px; height: 70px;"><br>SOYMILK</button>
+
+        <br>
+
         <button id="startButtonEl">START GAME</button>
     </div>
 
     <!--GAMEOVER SCREEN -->
     <div id="gameOverPopup">
-        <h1>YOU DIED!!</h1>
+        <h1 style="color: #fe5c6f;">YOU DIED</h1>
         <label>SCORE: </label><label id="gameOverScore">0</label>
         <br>
         <label>ENEMIES SLAIN: </label><label id="enemiesSlainScore">0</label>
@@ -70,7 +77,7 @@
 
     <canvas></canvas>
 
-    <h2><a href="https://nicolasprothero.com" target="_blank">player guide</a> / <a href="https://nicolasprothero.com" target="_blank">creator</a></h2>
+    <h3><a href="https://github.com/nicolasprothero/ShooterGame" target="_blank">player guide</a> / <a href="https://nicolasprothero.com" target="_blank">creator</a></h3>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

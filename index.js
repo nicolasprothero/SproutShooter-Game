@@ -23,6 +23,10 @@ const copybuttonEl = document.querySelector('#copybuttonEl')
 const startButtonEl = document.querySelector('#startButtonEl')
 const startGamePopup = document.querySelector('#startGamePopup')
 
+const classRifleButtonEl = document.querySelector('#classRifleButtonEl')
+const classSniperButtonEl = document.querySelector('#classSniperButtonEl')
+const classSoymilkButtonEl = document.querySelector('#classSoymilkButtonEl')
+
 canvas.width = 800
 canvas.height = 600
 
@@ -63,6 +67,7 @@ let enemiesSlain = 0
 let enemiesSpawned = 0
 
 let lastKey
+let playerClass = 'rifle'
 
 let scoreShowing = false
 let canShoot = true
@@ -73,7 +78,6 @@ player = new Player( {
     velocity: {x:0, y:0},
     width: 50,
     height: 75,
-    color: '#e8dfdf', 
     lives: 3, 
     movementSpeed: 1.8, 
     damage: 1, 
@@ -95,21 +99,60 @@ const background = new Sprite({
 
 //INITILIZES THE GAME
 function init() {
-    player = new Player( {
-        position: {x:x, y:y}, 
-        velocity: {x:0, y:0},
-        width: 50,
-        height: 75,
-        color: '#e8dfdf', 
-        lives: 3, 
-        movementSpeed: 1.8, 
-        damage: 1, 
-        fireRate: 3, 
-        bulletSpeed: 5, 
-        imageSrc: './img/Player_Idle.png', 
-        scale: 0.4, 
-        framesMax: 2,
-    })
+    if(playerClass === 'rifle') {
+        console.log('player rifle')
+        player = new Player( {
+            position: {x:x, y:y}, 
+            velocity: {x:0, y:0},
+            width: 50,
+            height: 75,
+            lives: 3, 
+            movementSpeed: 1.8, 
+            damage: 1, 
+            fireRate: 3, 
+            bulletSpeed: 5, 
+            imageSrc: './img/Player_Idle.png', 
+            scale: 0.4, 
+            framesMax: 2,
+        })
+    }
+
+    if(playerClass === 'sniper') {
+        console.log('player sniper')
+        player = new Player( {
+            position: {x:x, y:y}, 
+            velocity: {x:0, y:0},
+            width: 50,
+            height: 75,
+            lives: 3, 
+            movementSpeed: 1.5, 
+            damage: 3, 
+            fireRate: 0.8, 
+            bulletSpeed: 10, 
+            imageSrc: './img/Player_Idle.png', 
+            scale: 0.4, 
+            framesMax: 2,
+        })
+    }
+
+    if(playerClass === 'soymilk') {
+        console.log('player sniper')
+        player = new Player( {
+            position: {x:x, y:y}, 
+            velocity: {x:0, y:0},
+            width: 50,
+            height: 75,
+            lives: 3, 
+            movementSpeed: 2, 
+            damage: .3, 
+            fireRate: 6, 
+            bulletSpeed: 6, 
+            imageSrc: './img/Player_Idle.png', 
+            scale: 0.4, 
+            framesMax: 2,
+        })
+    }
+
     projectiles = []
     enemies = []
     animationID 
@@ -428,7 +471,7 @@ function animate() {
         for(let projectileIndex = projectiles.length - 1; projectileIndex >= 0; projectileIndex--){
             const projectile = projectiles[projectileIndex]
 
-            // PROJECTILE KILLS ENEMY
+            //SHOOT ENEMY
             if(isCollision(projectile.x, projectile.y, projectile.width, projectile.height, enemy.position.x, enemy.position.y, enemy.width, enemy.height)){
                 //KNOCKBACK
                 enemy.position.x += projectile.velocity.x * 8
@@ -442,8 +485,9 @@ function animate() {
                     createDamageLabel( {position:{ x:projectile.x, y:projectile.y }} )
                     projectiles.splice(projectileIndex, 1)
                 } else {
+                    // PROJECTILE KILLS ENEMY
                     score += 105
-                    audio.enemyDamage.play()
+                    audio.gameover.play()
                     scoreEl.innerHTML = score
                     
                     enemiesSlain += 1
@@ -541,6 +585,32 @@ window.addEventListener('keyup', (event) => {
     }
 })
 
+
+//CHOOSE CLASS
+classRifleButtonEl.addEventListener('click', () => {
+    audio.select.play()
+    classRifleButtonEl.style = "border: 5px solid #fe5c6f;"
+    classSniperButtonEl.style = "border: 0px solid #fe5c6f;"
+    classSoymilkButtonEl.style = "border: 0px solid #fe5c6f;"
+    playerClass = 'rifle'
+})
+
+classSniperButtonEl.addEventListener('click', () => {
+    audio.select.play()
+    classSniperButtonEl.style = "border: 5px solid #fe5c6f;"
+    classRifleButtonEl.style = "border: 0px solid #fe5c6f;"
+    classSoymilkButtonEl.style = "border: 0px solid #fe5c6f;"
+    playerClass = 'sniper'
+})
+
+classSoymilkButtonEl.addEventListener('click', () => {
+    audio.select.play()
+    classSoymilkButtonEl.style = "border: 5px solid #fe5c6f;"
+    classSniperButtonEl.style = "border: 0px solid #fe5c6f;"
+    classRifleButtonEl.style = "border: 0px solid #fe5c6f;"
+    playerClass = 'soymilk'
+})
+
 //ON RESIZE THE CANVAS SIZE CHANGES
 
 window.addEventListener('resize', () => {
@@ -579,7 +649,6 @@ window.addEventListener('touchstart', (event) => {
 
 document.addEventListener('visibilitychange', () => {
     if(document.hidden) {
-
         clearInterval(intervalID)
     } else {
         spawnEnemies()

@@ -46,12 +46,11 @@ class Sprite {
 }
 
 class Player extends Sprite{
-    constructor( {position, velocity, width, height, color, lives, movementSpeed, damage, fireRate, bulletSpeed, imageSrc, scale = 1, framesMax = 1 }) {
+    constructor( {position, velocity, width, height, lives, movementSpeed, damage, fireRate, bulletSpeed, imageSrc, scale = 1, framesMax = 1 }) {
         super( { position, width, height, imageSrc, scale, framesMax } ) 
 
         this.width = width
         this.height = height
-        this.color = color
         this.velocity = velocity
         this.lives = lives
 
