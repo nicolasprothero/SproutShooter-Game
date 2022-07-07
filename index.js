@@ -529,9 +529,9 @@ startButtonEl.addEventListener('click', () => {
 })
 
 copybuttonEl.addEventListener('click', () => {
-    audio.select.play()
+    audio.success.play()
     copybuttonEl.innerHTML = 'COPIED!'
-    navigator.clipboard.writeText('Sprout Shooter \nWave: ' + waveNum + '\nScore: ' +score+ ' \nhttps://sproutshooter.com');
+    navigator.clipboard.writeText(String.fromCodePoint(0x1F331) + ' Sprout Shooter \nWave: ' + waveNum + '\nScore: ' +score+ ' \nhttps://sproutshooter.com');
 })
 
 //RESTART BUTTON
@@ -590,7 +590,7 @@ window.addEventListener('keyup', (event) => {
 //CHOOSE CLASS
 classRifleButtonEl.addEventListener('click', () => {
     audio.select.play()
-    classRifleButtonEl.style = "border: 5px solid #fe5c6f;"
+    classRifleButtonEl.style = "border: 5px solid #59ce7c;"
     classSniperButtonEl.style = "border: 0px solid #fe5c6f;"
     classSoymilkButtonEl.style = "border: 0px solid #fe5c6f;"
     playerClass = 'rifle'
@@ -598,7 +598,7 @@ classRifleButtonEl.addEventListener('click', () => {
 
 classSniperButtonEl.addEventListener('click', () => {
     audio.select.play()
-    classSniperButtonEl.style = "border: 5px solid #fe5c6f;"
+    classSniperButtonEl.style = "border: 5px solid #59ce7c;"
     classRifleButtonEl.style = "border: 0px solid #fe5c6f;"
     classSoymilkButtonEl.style = "border: 0px solid #fe5c6f;"
     playerClass = 'sniper'
@@ -606,7 +606,7 @@ classSniperButtonEl.addEventListener('click', () => {
 
 classSoymilkButtonEl.addEventListener('click', () => {
     audio.select.play()
-    classSoymilkButtonEl.style = "border: 5px solid #fe5c6f;"
+    classSoymilkButtonEl.style = "border: 5px solid #59ce7c;"
     classSniperButtonEl.style = "border: 0px solid #fe5c6f;"
     classRifleButtonEl.style = "border: 0px solid #fe5c6f;"
     playerClass = 'soymilk'
