@@ -88,12 +88,12 @@ player = new Player( {
     framesMax: 2,
 })
 
-const background = new Sprite({ 
-    position:{x:750, y:400, }, 
-    width: 1500,
-    height: 800,
-    imageSrc: './img/background.png',
-    scale: 1,
+const background = new Background({ 
+    position:{x:0, y:0}, 
+    width: 800,
+    height: 600,
+    imageSrc: './img/backgrounds/background_grass.png',
+    scale: 0.667,
 })
 
 
@@ -107,10 +107,10 @@ function init() {
             width: 50,
             height: 75,
             lives: 3, 
-            movementSpeed: 1.8, 
+            movementSpeed: 1.6, 
             damage: 1, 
             fireRate: 3, 
-            bulletSpeed: 5, 
+            bulletSpeed: 4, 
             imageSrc: './img/Player_Idle.png', 
             scale: 0.4, 
             framesMax: 2,
@@ -125,11 +125,11 @@ function init() {
             width: 50,
             height: 75,
             lives: 3, 
-            movementSpeed: 1.5, 
+            movementSpeed: 1.4, 
             damage: 3, 
             fireRate: 0.8, 
             bulletSpeed: 10, 
-            imageSrc: './img/Player_Idle.png', 
+            imageSrc: './img/Sniper_Idle.png', 
             scale: 0.4, 
             framesMax: 2,
         })
@@ -143,11 +143,11 @@ function init() {
             width: 50,
             height: 75,
             lives: 3, 
-            movementSpeed: 2, 
-            damage: .3, 
+            movementSpeed: 1.7, 
+            damage: .4, 
             fireRate: 6, 
-            bulletSpeed: 6, 
-            imageSrc: './img/Player_Idle.png', 
+            bulletSpeed: 5, 
+            imageSrc: './img/Soy_Idle.png', 
             scale: 0.4, 
             framesMax: 2,
         })
@@ -228,7 +228,6 @@ function spawnEnemies() {
             hitPoints = 10
             enemyHealthEl.innerHTML = '10'
         }
-
         enemies.push(new Enemy( {
             position: {x:x, y:y},
             width: 56, 
@@ -258,7 +257,7 @@ function shoot({x, y}) {
                 y: player.position.y, 
                 width: player.bulletSize, 
                 height: player.bulletSize, 
-                color: '#e8dfdf', 
+                color: '#e8df$df', 
                 velocity: velocity
             }))
             audio.shoot.play()
@@ -277,7 +276,7 @@ function shootLinear( direction ) {
                 y: player.position.y, 
                 width: player.bulletSize, 
                 height: player.bulletSize, 
-                color: '#e8dfdf', 
+                color: '#ffffff', 
                 velocity: direction
             }))
             audio.shoot.play()
@@ -457,6 +456,7 @@ function animate() {
             cancelAnimationFrame(animationID)
             clearInterval(intervalID)
             game.active = false
+            audio.background.pause()
             gameOverPopup.style.display = 'block'
             gsap.fromTo('#gameOverPopup', {scale: 0.8, opacity: 0}, {
                 scale: 1,
@@ -479,14 +479,11 @@ function animate() {
                 if(enemy.hitPoints - player.damage > 0){
                     enemy.hitPoints -= player.damage
                     audio.enemyDamage.play()
-                    score += 5
-                    scoreEl.innerHTML = score
-
                     createDamageLabel( {position:{ x:projectile.x, y:projectile.y }} )
                     projectiles.splice(projectileIndex, 1)
                 } else {
                     // PROJECTILE KILLS ENEMY
-                    score += 105
+                    score += 100
                     audio.gameover.play()
                     scoreEl.innerHTML = score
                     
@@ -504,15 +501,18 @@ function animate() {
 
 
 //PLAYER SHOOTING WITH MOUSE
-
+/*
 addEventListener('click', (event) => {
     shoot({x: event.clientX, y: event.clientY})
 })
-
+*/
 //START BUTTON
 
 startButtonEl.addEventListener('click', () => {
     audio.select.play()
+    audio.background.play()
+    setTimeout(() => {  document.getElementById('titleText').src="./img/titleText.png" }, 200);
+    
     init()
     animate()
     spawnEnemies()
@@ -531,13 +531,14 @@ startButtonEl.addEventListener('click', () => {
 copybuttonEl.addEventListener('click', () => {
     audio.select.play()
     copybuttonEl.innerHTML = 'COPIED!'
-    navigator.clipboard.writeText('Shooter Game \nWave: ' + waveNum + '\nScore: ' +score+ ' \nhttps://ballshooter.io');
+    navigator.clipboard.writeText('Sprout Shooter \nWave: ' + waveNum + '\nScore: ' +score+ ' \nhttps://sproutshooter.com');
 })
 
 //RESTART BUTTON
 
 buttonEl.addEventListener('click', () => {
     audio.select.play()
+    audio.background.play()
     init()
     animate()
     spawnEnemies()
@@ -639,18 +640,21 @@ window.addEventListener('resize', () => {
 })
 
 //MOBILE TOUCH TO SHOOT
-
+/*
 window.addEventListener('touchstart', (event) => {
     const x = event.touches[0].clientX
     const y = event.touches[0].clientY
 
     shoot({x, y})
 })
-
+*/
 document.addEventListener('visibilitychange', () => {
-    if(document.hidden) {
-        clearInterval(intervalID)
-    } else {
-        spawnEnemies()
+    if(game.active) {
+        if(document.hidden) {
+            clearInterval(intervalID)
+        } else {
+            console.log('spawning enemies again')
+            spawnEnemies()
+        }
     }
 })

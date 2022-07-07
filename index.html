@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://use.typekit.net/tuu6vwh.css">
 
-    <title>Shooter Game</title>
+    <title>SPROUT SHOOTER</title>
     <meta name="description" content="A roguelike survival game">
     <meta name="author" content="Nicolas Prothero">
     <meta name="theme-color" content="#fe5c6f">
@@ -16,7 +16,7 @@
      -->
 </head>
 <body>
-    <img src="./img/titleText.png" id="titleText">
+    <img src="./img/titleText0.png" id="titleText">
 
     <div id="heartHUD">
         <img src="./img/heartFilled.png" id="heart1" style="transform: translate(70%, 40%); width: 40px; height: 40px;">
@@ -51,8 +51,8 @@
 
     <!-- START GAME SCREEN-->
     <div id="startGamePopup">
-        <h1 style="margin-bottom: 5px;"> BALL SHOOTER</h1>
-        <h2>A <i>roguelike survival</i> by Nicolas Prothero</h2>
+        <h1 style="margin-bottom: 5px;"> SPROUT SHOOTER</h1>
+        <h2>A 100% plant based <i>roguelike survival</i> game.</h2>
         <br>
         <h3 style="margin: 0px;">pick a class:</h3>
         <button id="classRifleButtonEl"><img src="./img/Marksman.png" style="width: 70px; height: 70px;"><br>RIFLEMAN</button>
@@ -66,7 +66,9 @@
 
     <!--GAMEOVER SCREEN -->
     <div id="gameOverPopup">
-        <h1 style="color: #fe5c6f;">YOU DIED</h1>
+        <h1 style="color: #fe5c6f; margin-bottom: 10px;">YOU DIED</h1>
+        <label style="font-size: 45px;">WAVE: </label><label id="waveNumber" style="font-size: 45px;">1</label>
+        <br>
         <label>SCORE: </label><label id="gameOverScore">0</label>
         <br>
         <label>ENEMIES SLAIN: </label><label id="enemiesSlainScore">0</label>

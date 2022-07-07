@@ -6,7 +6,7 @@ const audio = {
 
     playerDamage : new Howl( {
         src: './audio/Enemy_damage_taken.wav',
-        volume: 0.1,
+        volume: 0.3,
     }),
 
     enemyDamage : new Howl( {
@@ -22,5 +22,11 @@ const audio = {
     select : new Howl( {
         src: './audio/Select.wav',
         volume: 0.1,
+    }),
+
+    background : new Howl( {
+        src: './audio/backgroundMusic.wav',
+        volume: 0.05,
+        loop: true,
     }),
 }

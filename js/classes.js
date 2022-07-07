@@ -45,6 +45,43 @@ class Sprite {
     }
 }
 
+class Background extends Sprite{
+    constructor( {position, width, height, imageSrc, scale = 1, framesMax = 1 } ) {
+        super( {position, width, height, imageSrc, scale, framesMax} )
+        this.position = position
+        this.width = width
+        this.height = height
+        this.image = new Image()
+        this.image.src = imageSrc
+
+        this.scale = scale
+        this.framesMax = framesMax
+        this.framesCurrent = 0
+        this.framesElapsed = 0
+        this.framesHold = 5
+
+    }
+
+    draw() {
+        c.drawImage(
+            this.image, 
+            this.framesCurrent * (this.image.width / this.framesMax),
+            0,
+            this.image.width / this.framesMax,
+            this.image.height,
+            this.position.x,
+            this.position.y,
+            (this.image.width / this.framesMax) * this.scale,
+            this.image.height * this.scale
+        )
+    }
+
+    update() {
+        this.draw()
+        this.animateFrames()
+    }
+}
+
 class Player extends Sprite{
     constructor( {position, velocity, width, height, lives, movementSpeed, damage, fireRate, bulletSpeed, imageSrc, scale = 1, framesMax = 1 }) {
         super( { position, width, height, imageSrc, scale, framesMax } ) 
@@ -58,7 +95,7 @@ class Player extends Sprite{
         this.damage = damage
         this.fireRate = fireRate
         this.bulletSpeed = bulletSpeed
-        this.bulletSize = 12 + (damage * 2)
+        this.bulletSize = 10 + (damage * 2)
 
         this.framesCurrent = 0
         this.framesElapsed = 0
