@@ -1,5 +1,5 @@
 # 🌱 SPROUT SHOOTER
-<a href="https://sproutshooter.com" target="_blank">Sprout Shooter</a> is a roguelike survival shooter game created in JavaScript and HTML.
+<a href="https://sproutshooter.com" target="_blank">Sprout Shooter</a> is a roguelike survival shooter game by <a href="https://nicolasprothero.com" target="_blank">Nicolas Prothero</a> created completely in JavaScript and HTML.
 
 ## MOVEMENT
 
