@@ -14,6 +14,7 @@ class Sprite {
     }
 
     draw() {
+        c.imageSmoothingEnabled = false;
         c.drawImage(
             this.image, 
             this.framesCurrent * (this.image.width / this.framesMax),
