@@ -100,7 +100,7 @@ class Player extends Sprite{
 
         this.framesCurrent = 0
         this.framesElapsed = 0
-        this.framesHold = 20
+        this.framesHold = 17
     }
 
 
@@ -192,8 +192,8 @@ class Enemy extends Sprite{
         this.animateFrames()
 
         const angle = Math.atan2(player.position.y - this.position.y, player.position.x - this.position.x)
-        this.velocity.x = Math.cos(angle)
-        this.velocity.y = Math.sin(angle)
+        this.velocity.x = Math.cos(angle) * 0.7
+        this.velocity.y = Math.sin(angle) * 0.7
         this.position.x = this.position.x + this.velocity.x
         this.position.y = this.position.y + this.velocity.y
     }

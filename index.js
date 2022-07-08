@@ -33,7 +33,7 @@ canvas.height = 600
 let titleHeight = 110
 
 //STYLES THE STATS AND HEARTS TO THE CORRECT LOCATION
-titleText.style.width = canvas.width + 'px'
+//titleText.style.width = canvas.width + 'px'
 
 heartHUD.style.left = (innerWidth - canvas.width)/2 + 'px'
 
@@ -104,16 +104,16 @@ function init() {
         player = new Player( {
             position: {x:x, y:y}, 
             velocity: {x:0, y:0},
-            width: 50,
-            height: 75,
+            width: 45,
+            height: 62,
             lives: 3, 
             movementSpeed: 1.6, 
             damage: 1, 
             fireRate: 3, 
             bulletSpeed: 4, 
-            imageSrc: './img/Player_Idle.png', 
-            scale: 0.4, 
-            framesMax: 2,
+            imageSrc: './img/PlayerIdle.png', 
+            scale: 3.5, 
+            framesMax: 5,
         })
     }
 
@@ -125,13 +125,13 @@ function init() {
             width: 50,
             height: 75,
             lives: 3, 
-            movementSpeed: 1.4, 
+            movementSpeed: 1.5, 
             damage: 3, 
             fireRate: 0.8, 
             bulletSpeed: 10, 
-            imageSrc: './img/Sniper_Idle.png', 
-            scale: 0.4, 
-            framesMax: 2,
+            imageSrc: './img/PlayerIdle.png', 
+            scale: 3.5, 
+            framesMax: 5,
         })
     }
 
@@ -147,9 +147,9 @@ function init() {
             damage: .4, 
             fireRate: 6, 
             bulletSpeed: 5, 
-            imageSrc: './img/Soy_Idle.png', 
-            scale: 0.4, 
-            framesMax: 2,
+            imageSrc: './img/PlayerIdle.png', 
+            scale: 3.5, 
+            framesMax: 5,
         })
     }
 
@@ -235,8 +235,8 @@ function spawnEnemies() {
             color: color, 
             velocity: velocity, 
             hitPoints: hitPoints,
-            imageSrc: './img/SlimeEnemy.png',
-            scale: 0.4,
+            imageSrc: './img/Enemy_Slime.png',
+            scale: 4,
             framesMax: 9
         }))
     }, 3000) //TIME BETWEEN ENEMY SPAWNS
@@ -620,7 +620,7 @@ window.addEventListener('resize', () => {
     canvas.height = 600 
 
     //STYLES THE STATS AND HEARTS TO THE CORRECT LOCATION
-    titleText.style.width = canvas.width + 'px'
+    //titleText.style.width = canvas.width + 'px'
 
     heartHUD.style.left = (innerWidth - canvas.width)/2 + 'px'
 
