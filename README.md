@@ -1,7 +1,7 @@
 # SPROUT SHOOTER
 <a href="https://sproutshooter.com" target="_blank">Sprout Shooter</a> is a roguelike survival shooter game created in JavaScript and HTML.
 
-## Controls
+## MOVEMENT
 
 `W` is used to move the player UP
 
@@ -11,6 +11,8 @@
 
 `D` is used to move the player RIGHT
 
+## SHOOTING
+
 `ARROW_UP` is used to shoot UP
 
 `ARROW_LEFT` is used to shoot LEFT
@@ -19,5 +21,6 @@
 
 `ARROW_RIGHT` is used to shoot RIGHT
 
+## MENU
 
 `i` is used to toggle Stat menu on the left.
