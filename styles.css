@@ -11,6 +11,14 @@ canvas {
     border: 10px solid #ffff;
 }
 
+img { 
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
 h1 {
     font-size: 80px;
     font-weight: 900;
