@@ -76,29 +76,6 @@ let isMoving = false
 let isShooting = false
 
 player = new Player( {
-    position: {x:x, y:y}, 
-    velocity: {x:0, y:0},
-    width: 50,
-    height: 75,
-    lives: 3, 
-    movementSpeed: 1.8, 
-    damage: 1, 
-    fireRate: 3, 
-    bulletSpeed: 5, 
-    imageSrc: './img/playerSprites/PlayerIdle_Right.png', 
-    scale: 0.4, 
-    framesMax: 2,
-    sprites: {
-        idle: {
-            imageSrc: './img/playerSprites/PlayerIdle.png', 
-            framesMax: 5,
-        },
-
-        run: {
-            imageSrc: './img/playerSprites/PlayerRun.png', 
-            framesMax: 6,
-        }
-    }
 })
 
 const background = new Background({ 
