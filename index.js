@@ -112,14 +112,13 @@ const background = new Background({
 
 //INITILIZES THE GAME
 function init() {
-        console.log('player rifle')
         player = new Player( {
             position: {x:x, y:y}, 
             velocity: {x:0, y:0},
             width: 49,
             height: 62,
             lives: 3, 
-            movementSpeed: 1.6, 
+            movementSpeed: 1.4, 
             damage: 1, 
             fireRate: 3, 
             bulletSpeed: 4, 
