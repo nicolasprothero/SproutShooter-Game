@@ -85,17 +85,17 @@ player = new Player( {
     damage: 1, 
     fireRate: 3, 
     bulletSpeed: 5, 
-    imageSrc: './img/PlayerIdle_Right.png', 
+    imageSrc: './img/playerSprites/PlayerIdle_Right.png', 
     scale: 0.4, 
     framesMax: 2,
     sprites: {
         idle: {
-            imageSrc: './img/PlayerIdle.png', 
+            imageSrc: './img/playerSprites/PlayerIdle.png', 
             framesMax: 5,
         },
 
         run: {
-            imageSrc: './img/PlayerRun.png', 
+            imageSrc: './img/playerSprites/PlayerRun.png', 
             framesMax: 6,
         }
     }
