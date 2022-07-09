@@ -25,7 +25,6 @@ const startGamePopup = document.querySelector('#startGamePopup')
 
 const classRifleButtonEl = document.querySelector('#classRifleButtonEl')
 const classSniperButtonEl = document.querySelector('#classSniperButtonEl')
-const classSoymilkButtonEl = document.querySelector('#classSoymilkButtonEl')
 
 canvas.width = 800
 canvas.height = 600
@@ -67,11 +66,14 @@ let enemiesSlain = 0
 let enemiesSpawned = 0
 
 let lastKey
-let playerClass = 'rifle'
 
 let scoreShowing = false
 let canShoot = true
 let isInvincible = false
+
+let facing = 'right'
+let isMoving = false
+let isShooting = false
 
 player = new Player( {
     position: {x:x, y:y}, 
@@ -83,9 +85,20 @@ player = new Player( {
     damage: 1, 
     fireRate: 3, 
     bulletSpeed: 5, 
-    imageSrc: './img/Player_Idle.png', 
+    imageSrc: './img/PlayerIdle_Right.png', 
     scale: 0.4, 
     framesMax: 2,
+    sprites: {
+        idle: {
+            imageSrc: './img/PlayerIdle.png', 
+            framesMax: 5,
+        },
+
+        run: {
+            imageSrc: './img/PlayerRun.png', 
+            framesMax: 6,
+        }
+    }
 })
 
 const background = new Background({ 
@@ -99,59 +112,52 @@ const background = new Background({
 
 //INITILIZES THE GAME
 function init() {
-    if(playerClass === 'rifle') {
         console.log('player rifle')
         player = new Player( {
             position: {x:x, y:y}, 
             velocity: {x:0, y:0},
-            width: 45,
+            width: 49,
             height: 62,
             lives: 3, 
             movementSpeed: 1.6, 
             damage: 1, 
             fireRate: 3, 
             bulletSpeed: 4, 
-            imageSrc: './img/PlayerIdle.png', 
+            imageSrc: './img/playerSprites/PlayerIdle_Right.png', 
             scale: 3.5, 
             framesMax: 5,
-        })
-    }
+            sprites: {
+                idleUp: {
+                    imageSrc: './img/playerSprites/PlayerIdle_Up.png', 
+                    framesMax: 5,
+                },
 
-    if(playerClass === 'sniper') {
-        console.log('player sniper')
-        player = new Player( {
-            position: {x:x, y:y}, 
-            velocity: {x:0, y:0},
-            width: 50,
-            height: 75,
-            lives: 3, 
-            movementSpeed: 1.5, 
-            damage: 3, 
-            fireRate: 0.8, 
-            bulletSpeed: 10, 
-            imageSrc: './img/PlayerIdle.png', 
-            scale: 3.5, 
-            framesMax: 5,
-        })
-    }
+                idleLeft: {
+                    imageSrc: './img/playerSprites/PlayerIdle_Left.png', 
+                    framesMax: 5,
+                },
 
-    if(playerClass === 'soymilk') {
-        console.log('player sniper')
-        player = new Player( {
-            position: {x:x, y:y}, 
-            velocity: {x:0, y:0},
-            width: 50,
-            height: 75,
-            lives: 3, 
-            movementSpeed: 1.7, 
-            damage: .4, 
-            fireRate: 6, 
-            bulletSpeed: 5, 
-            imageSrc: './img/PlayerIdle.png', 
-            scale: 3.5, 
-            framesMax: 5,
+                idleDown: {
+                    imageSrc: './img/playerSprites/PlayerIdle_Down.png', 
+                    framesMax: 5,
+                },
+
+                idleRight: {
+                    imageSrc: './img/playerSprites/PlayerIdle_Right.png', 
+                    framesMax: 5,
+                },
+
+                runRight: {
+                    imageSrc: './img/playerSprites/PlayerRun_Right.png', 
+                    framesMax: 6,
+                },
+
+                runLeft: {
+                    imageSrc: './img/playerSprites/PlayerRun_Left.png', 
+                    framesMax: 6,
+                },
+            }
         })
-    }
 
     projectiles = []
     enemies = []
@@ -373,7 +379,6 @@ const controller = {
     ArrowRight: {
         pressed: false
     },
-
 }
 
 //EXECUTES ALL INPUTS WASD or ARROWKEYS
@@ -384,27 +389,59 @@ const executeMoves = () => {
       } 
       if(key === 'a' && controller[key].pressed) {
         movePlayer( true, -player.movementSpeed)
+        facing = 'left'
       } 
       if(key === 's' && controller[key].pressed) {
         movePlayer( false, player.movementSpeed)
       } 
       if(key === 'd' && controller[key].pressed) {
         movePlayer(true, player.movementSpeed)
+        facing = 'right'
       } 
 
       if(key === 'ArrowUp' && controller[key].pressed) {
         shootLinear( { x:0, y:-player.bulletSpeed } )
+        facing = 'up'
       } 
       if(key === 'ArrowLeft' && controller[key].pressed) {
         shootLinear( { x:-player.bulletSpeed, y:0 } )
+        facing = 'left'
       } 
       if(key === 'ArrowDown' && controller[key].pressed) {
         shootLinear( { x:0, y:player.bulletSpeed } )
+        facing = 'down'
       } 
       if(key === 'ArrowRight' && controller[key].pressed) {
         shootLinear( { x:player.bulletSpeed, y:0 } )
+        facing = 'right'
       } 
     })
+}
+
+const executeSprites = () => {
+    if(isMoving && isShooting) {
+
+    } else if(isMoving) {
+        if(facing === 'left') {
+            player.switchSprite('runLeft')
+        } else if(facing === 'right'){
+            player.switchSprite('runRight')
+        } else if(facing === 'up'){
+            player.switchSprite('idleUp')
+        } else if(facing === 'down'){
+            player.switchSprite('idleDown')
+        }
+    } else {
+        if(facing === 'left') {
+            player.switchSprite('idleLeft')
+        } else if(facing === 'right'){
+            player.switchSprite('idleRight')
+        } else if(facing === 'up'){
+            player.switchSprite('idleUp')
+        } else if(facing === 'down'){
+            player.switchSprite('idleDown')
+        }
+    }
 }
 
 //ANIMATES EACH FRAME USING requestAnimationFrame!!!
@@ -420,8 +457,15 @@ function animate() {
     player.velocity.x = 0
     player.velocity.y = 0
 
-    //ANIMATES PLAYER MOVEMENT
     executeMoves()
+    executeSprites()
+
+    if(controller.w.pressed || controller.a.pressed || controller.s.pressed || controller.d.pressed){
+        isMoving = true
+    }
+    if(!controller.w.pressed && !controller.a.pressed && !controller.s.pressed && !controller.d.pressed){
+        isMoving = false
+    }
 
     for(let index = projectiles.length - 1; index >= 0; index--){
         const projectile = projectiles[index]
@@ -592,24 +636,10 @@ classRifleButtonEl.addEventListener('click', () => {
     audio.select.play()
     classRifleButtonEl.style = "border: 5px solid #59ce7c;"
     classSniperButtonEl.style = "border: 0px solid #fe5c6f;"
-    classSoymilkButtonEl.style = "border: 0px solid #fe5c6f;"
-    playerClass = 'rifle'
 })
 
 classSniperButtonEl.addEventListener('click', () => {
-    audio.select.play()
-    classSniperButtonEl.style = "border: 5px solid #59ce7c;"
-    classRifleButtonEl.style = "border: 0px solid #fe5c6f;"
-    classSoymilkButtonEl.style = "border: 0px solid #fe5c6f;"
-    playerClass = 'sniper'
-})
-
-classSoymilkButtonEl.addEventListener('click', () => {
-    audio.select.play()
-    classSoymilkButtonEl.style = "border: 5px solid #59ce7c;"
-    classSniperButtonEl.style = "border: 0px solid #fe5c6f;"
-    classRifleButtonEl.style = "border: 0px solid #fe5c6f;"
-    playerClass = 'soymilk'
+    audio.enemyDamage.play()
 })
 
 //ON RESIZE THE CANVAS SIZE CHANGES
@@ -653,7 +683,6 @@ document.addEventListener('visibilitychange', () => {
         if(document.hidden) {
             clearInterval(intervalID)
         } else {
-            console.log('spawning enemies again')
             spawnEnemies()
         }
     }

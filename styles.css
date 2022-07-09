@@ -33,7 +33,7 @@ h2 {
 }
 
 h3 {
-    padding-top: 15px;
+    padding-top: 5px;
     text-align: center;
     font-size: 20px;
     color: #ffff;
@@ -159,25 +159,14 @@ a {
     cursor: pointer;
 }
 
-#classSoymilkButtonEl {
-    font-size: 20px;
-    margin-top: 30px;
-    border-radius: 8px;
-    background-color: #effedd;
-    border: none;
-    color: #23272a;
-    padding: 16px 38px;
-    cursor: pointer;
-}
-
 #classSniperButtonEl {
     font-size: 20px;
     margin-top: 30px;
     border-radius: 8px;
-    background-color: #effedd;
+    background-color: #777f6e;
     border: none;
     color: #23272a;
-    padding: 16px 45px;
+    padding: 18px 41px;
     cursor: pointer;
 }
 

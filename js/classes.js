@@ -84,7 +84,7 @@ class Background extends Sprite{
 }
 
 class Player extends Sprite{
-    constructor( {position, velocity, width, height, lives, movementSpeed, damage, fireRate, bulletSpeed, imageSrc, scale = 1, framesMax = 1 }) {
+    constructor( {position, velocity, width, height, lives, movementSpeed, damage, fireRate, bulletSpeed, imageSrc, scale = 1, framesMax = 1, sprites}) {
         super( { position, width, height, imageSrc, scale, framesMax } ) 
 
         this.width = width
@@ -100,7 +100,13 @@ class Player extends Sprite{
 
         this.framesCurrent = 0
         this.framesElapsed = 0
-        this.framesHold = 17
+        this.framesHold = 15
+        this.sprites = sprites
+
+        for(const sprite in this.sprites) {
+            sprites[sprite].image = new Image()
+            sprites[sprite].image.src = sprites[sprite].imageSrc
+        }
     }
 
 
@@ -133,6 +139,58 @@ class Player extends Sprite{
             this.velocity.y = 0
         }
     }
+
+    switchSprite(sprite) {
+        switch (sprite) {
+          case 'idleUp':
+            if (this.image !== this.sprites.idleUp.image) {
+              this.image = this.sprites.idleUp.image
+              this.framesMax = this.sprites.idleUp.framesMax
+              this.framesCurrent = 0
+            }
+            break
+
+          case 'idleLeft':
+            if (this.image !== this.sprites.idleLeft.image) {
+              this.image = this.sprites.idleLeft.image
+              this.framesMax = this.sprites.idleLeft.framesMax
+              this.framesCurrent = 0
+            }
+            break
+
+          case 'idleDown':
+            if (this.image !== this.sprites.idleDown.image) {
+              this.image = this.sprites.idleDown.image
+              this.framesMax = this.sprites.idleDown.framesMax
+              this.framesCurrent = 0
+            }
+            break
+    
+          case 'idleRight':
+            if (this.image !== this.sprites.idleRight.image) {
+              this.image = this.sprites.idleRight.image
+              this.framesMax = this.sprites.idleRight.framesMax
+              this.framesCurrent = 0
+            }
+            break
+
+            case 'runRight':
+            if (this.image !== this.sprites.runRight.image) {
+              this.image = this.sprites.runRight.image
+              this.framesMax = this.sprites.runRight.framesMax
+              this.framesCurrent = 0
+            }
+            break
+
+          case 'runLeft':
+            if (this.image !== this.sprites.runLeft.image) {
+              this.image = this.sprites.runLeft.image
+              this.framesMax = this.sprites.runLeft.framesMax
+              this.framesCurrent = 0
+            }
+            break
+        }
+      }
 }
 
 class Projectile {
