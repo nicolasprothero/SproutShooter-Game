@@ -1,7 +1,13 @@
 # 🌱 SPROUT SHOOTER
-<a href="https://sproutshooter.com" target="_blank">Sprout Shooter</a> is a roguelike survival shooter game by <a href="https://nicolasprothero.com" target="_blank">Nicolas Prothero</a> created completely in JavaScript and HTML.
+[**Sprout Shooter**](https://sproutshooter.com) is a roguelike survival shooter by [**Nicolas Prothero**](https://nicolasprothero.com) created entirely in HTML and JavaScript
 
-## MOVEMENT
+![Website_On_Desktop](img/github/desktop.png)
+## 🕹 CONTROLS 
+
+**Sprout Shooter** requires to be played on a browser using a **keyboard**. 
+
+
+### Movement
 
 `W` is used to move the player **UP**
 
@@ -11,7 +17,9 @@
 
 `D` is used to move the player **RIGHT**
 
-## SHOOTING
+<br>
+
+### Shooting
 
 `ARROW_UP` is used to shoot **UP**
 
@@ -21,7 +29,9 @@
 
 `ARROW_RIGHT` is used to shoot **RIGHT**
 
-## MENU
+<br>
+
+### Menu
 
 `i` is used to toggle Stat menu on the left.
 
@@ -32,3 +42,44 @@
 - Press `two` times for **all Audio muted**
 
 - Press `three` times for **all Audio on**
+
+<br>
+
+## 🧩 FEATURES
+
+### Player Stats
+The player has many stats that include:
+
+- **Health** (Visible by Hearts at the top left of screen)
+- **Movement Speed**
+- **Pellet Damage**
+- **Firerate** (measured with bps *bullets per second*)
+- **Pellet Speed**
+- **Pellet Size** (Scales with Damage)
+
+These stats can become **visible** by clickng `i`.
+
+They can also be changed based on the **items** collected after certain waves. <sub>*to be implemented*</sub>
+
+<br>
+
+### Wave System
+As the game progresses you will complete **"waves"** with each new wave being harder than the last.
+
+Wave difficulty is determined through the amount of enemies per wave, an enemy's health, and the time between enemy spawning.
+
+<br>
+
+### Sharing System
+Once done with your game you have the option to share your score with friends!
+
+Press the `SHARE` button and your game information is automatically saved to your clipboard.
+
+The **copied text** would look like this:
+
+```
+🌱 Sprout Shooter 
+Wave: 2
+Score: 3100 
+https://sproutshooter.com
+```
