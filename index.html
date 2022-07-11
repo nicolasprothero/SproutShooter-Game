@@ -28,8 +28,13 @@
     <div id="waveText">
         <span>WAVE: <span id="waveNumber">1</span></span>
     </div>
+
     <div id="scoreText">
         <span>Score: <span id="scoreEl">0</span></span>
+    </div>
+
+    <div id="enemyKillFraction">
+        <span id="totKilled">0</span>/<span id="totEnemy">10</span></span>
     </div>
 
     <!-- SCOREBOARD -->
@@ -66,7 +71,7 @@
     <!--GAMEOVER SCREEN -->
     <div id="gameOverPopup">
         <h1 style="color: #fe5c6f; margin-bottom: 10px;">YOU DIED</h1>
-        <label style="font-size: 45px;">WAVE: </label><label id="waveNumber" style="font-size: 45px;">1</label>
+        <label style="font-size: 45px;">WAVE: </label><label id="gameOverWave" style="font-size: 45px;">1</label>
         <br>
         <label>SCORE: </label><label id="gameOverScore">0</label>
         <br>

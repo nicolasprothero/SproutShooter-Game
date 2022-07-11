@@ -3,8 +3,13 @@ const c = canvas.getContext('2d')
 const scoreText = document.querySelector('#scoreText')
 const statText = document.querySelector('#statText')
 const waveText = document.querySelector('#waveText')
+const waveNumber = document.querySelector('#waveNumber')
+const gameOverWave = document.querySelector('#gameOverWave')
 const heartHUD = document.querySelector('#heartHUD')
 const titleText = document.querySelector('#titleText')
+
+const totKilled = document.querySelector('#totKilled')
+const totEnemy = document.querySelector('#totEnemy')
 
 const scoreEl = document.querySelector('#scoreEl')
 const enemiesStatEl = document.querySelector('#enemiesStatEl')
@@ -29,7 +34,7 @@ const classSniperButtonEl = document.querySelector('#classSniperButtonEl')
 canvas.width = 800
 canvas.height = 600
 
-let titleHeight = 110
+let titleHeight = 100
 
 //STYLES THE STATS AND HEARTS TO THE CORRECT LOCATION
 //titleText.style.width = canvas.width + 'px'
@@ -37,12 +42,12 @@ let titleHeight = 110
 heartHUD.style.left = (innerWidth - canvas.width)/2 + 'px'
 
 startGamePopup.style.left = (innerWidth - canvas.width)/2 + 'px'
-startGamePopup.style.top = titleHeight + 'px'
+startGamePopup.style.top = titleHeight + 10 + 'px'
 startGamePopup.style.width = canvas.width + 'px'
 startGamePopup.style.height = canvas.height + 'px'
 
 gameOverPopup.style.left = (innerWidth - canvas.width)/2 + 'px'
-gameOverPopup.style.top = titleHeight + 'px'
+gameOverPopup.style.top = titleHeight + 10 + 'px'
 gameOverPopup.style.width = canvas.width + 'px'
 gameOverPopup.style.height = canvas.height + 'px'
 
@@ -65,6 +70,8 @@ let waveNum = 1
 let enemiesSlain = 0
 let enemiesSpawned = 0
 
+let enemiesSlainDuringWave = 0
+
 let lastKey
 
 let scoreShowing = false
@@ -75,8 +82,9 @@ let facing = 'right'
 let isMoving = false
 let isShooting = false
 
-player = new Player( {
-})
+let audioPlaying = 'all'
+
+player = new Player({})
 
 const background = new Background({ 
     position:{x:0, y:0}, 
@@ -85,7 +93,6 @@ const background = new Background({
     imageSrc: './img/backgrounds/background_grass.png',
     scale: 0.667,
 })
-
 
 //INITILIZES THE GAME
 function init() {
@@ -142,8 +149,12 @@ function init() {
     score = 0
     copybuttonEl.innerHTML = 'SHARE'
     enemiesSlain = 0
+    enemiesSlainDuringWave = 0
 
     waveNum = 1
+    waveNumber.innerHTML = waveNum
+    totKilled.innerHTML = 0
+    totEnemy.innerHTML = 10
     enemiesSpawned = 0
 
     game = {
@@ -194,22 +205,20 @@ function spawnEnemies() {
 
         //INCREASE HITPOINTS AT CERTAIN SCORE 
         let hitPoints = 5
-        if(waveNum === 2) {
+
+        if(waveNum === 3) {
             hitPoints = 7
             enemyHealthEl.innerHTML = '7'
-        }
-        if(waveNum === 3){
-            hitPoints = 10
-            enemyHealthEl.innerHTML = '10'
         }
         if(waveNum === 4){
             hitPoints = 10
             enemyHealthEl.innerHTML = '10'
         }
         if(waveNum === 5){
-            hitPoints = 10
-            enemyHealthEl.innerHTML = '10'
+            hitPoints = 12
+            enemyHealthEl.innerHTML = '12'
         }
+
         enemies.push(new Enemy( {
             position: {x:x, y:y},
             width: 56, 
@@ -420,6 +429,88 @@ const executeSprites = () => {
     }
 }
 
+const manageWaves = () => {
+    totEnemy.innerHTML = 10
+    if(waveNum === 1) {
+        if(enemiesSpawned === 10) {
+            clearInterval(intervalID)
+        }
+        if(enemiesSlainDuringWave === 10) {
+            audio.success.play()
+            waveNum = 2
+            waveNumber.innerHTML = waveNum
+            enemiesSpawned = 0
+            enemiesSlainDuringWave = 0
+            totKilled.innerHTML = 0
+            spawnEnemies()
+        }
+    }
+
+    if(waveNum === 2) {
+        totEnemy.innerHTML = 12
+        if(enemiesSpawned === 12) {
+            clearInterval(intervalID)
+        }
+        if(enemiesSlainDuringWave === 12) {
+            audio.success.play()
+            waveNum = 3
+            waveNumber.innerHTML = waveNum
+            enemiesSpawned = 0
+            enemiesSlainDuringWave = 0
+            totKilled.innerHTML = 0
+            spawnEnemies()
+        }
+    }
+
+    if(waveNum === 3) {
+        totEnemy.innerHTML = 15
+        if(enemiesSpawned === 15) {
+            clearInterval(intervalID)
+        }
+        if(enemiesSlainDuringWave === 15) {
+            audio.success.play()
+            waveNum = 4
+            waveNumber.innerHTML = waveNum
+            enemiesSpawned = 0
+            enemiesSlainDuringWave = 0
+            totKilled.innerHTML = 0
+            spawnEnemies()
+        }
+    }
+
+    if(waveNum === 4) {
+        totEnemy.innerHTML = 17
+        if(enemiesSpawned === 17) {
+            clearInterval(intervalID)
+        }
+        if(enemiesSlainDuringWave === 17) {
+            audio.success.play()
+            waveNum = 5
+            waveNumber.innerHTML = waveNum
+            enemiesSpawned = 0
+            enemiesSlainDuringWave = 0
+            totKilled.innerHTML = 0
+            spawnEnemies()
+        }
+    }
+
+    if(waveNum === 5) {
+        totEnemy.innerHTML = 20
+        if(enemiesSpawned === 20) {
+            clearInterval(intervalID)
+        }
+        if(enemiesSlainDuringWave === 20) {
+            audio.success.play()
+            waveNum = 6
+            waveNumber.innerHTML = waveNum
+            enemiesSpawned = 0
+            enemiesSlainDuringWave = 0
+            totKilled.innerHTML = 0
+            spawnEnemies()
+        }
+    }
+}
+
 //ANIMATES EACH FRAME USING requestAnimationFrame!!!
 function animate() {
     animationID = requestAnimationFrame(animate)
@@ -435,6 +526,8 @@ function animate() {
 
     executeMoves()
     executeSprites()
+
+    manageWaves()
 
     if(controller.w.pressed || controller.a.pressed || controller.s.pressed || controller.d.pressed){
         isMoving = true
@@ -485,6 +578,7 @@ function animate() {
                 duration: 2,
             })
             gameOverScore.innerHTML = score
+            gameOverWave.innerHTML = waveNum
             enemiesSlainScore.innerHTML = enemiesSlain
         }
 
@@ -508,7 +602,9 @@ function animate() {
                     scoreEl.innerHTML = score
                     
                     enemiesSlain += 1
+                    enemiesSlainDuringWave += 1
                     enemiesStatEl.innerHTML = enemiesSlain
+                    totKilled.innerHTML = enemiesSlainDuringWave
 
                     createDamageLabel( {position:{ x:projectile.x, y:projectile.y }} )
                     enemies.splice(index, 1)
@@ -587,10 +683,10 @@ window.addEventListener('keyup', (event) => {
       }
 })
 
-//USED TO VIEW SCORE AND STATS
 
 window.addEventListener('keyup', (event) => {
     switch (event.key) {
+        //stat popup
         case 'i':
             if(scoreShowing){
                 audio.select.play()
@@ -602,6 +698,26 @@ window.addEventListener('keyup', (event) => {
                 statText.style.display = 'block'
                 scoreShowing = true
                 break
+            }
+        
+        //mutes sounds
+        case 'm':
+            if(audioPlaying === 'all') {
+                audio.background.mute(true)
+                audioPlaying = 'sfx'
+                break
+            } else if(audioPlaying ==='sfx') {
+                for(let key in audio) {
+                    audio[key].mute(true)
+                }
+                audioPlaying = 'none'
+                break
+            } else if(audioPlaying === 'none'){
+                audio.background.mute(false)
+                for(let key in audio) {
+                    audio[key].mute(false)
+                }
+                audioPlaying = 'all'
             }
     }
 })
@@ -631,12 +747,12 @@ window.addEventListener('resize', () => {
     heartHUD.style.left = (innerWidth - canvas.width)/2 + 'px'
 
     startGamePopup.style.left = (innerWidth - canvas.width)/2 + 'px'
-    startGamePopup.style.top = titleHeight + 'px'
+    startGamePopup.style.top = titleHeight + 10 + 'px'
     startGamePopup.style.width = canvas.width + 'px'
     startGamePopup.style.height = canvas.height + 'px'
-
+    
     gameOverPopup.style.left = (innerWidth - canvas.width)/2 + 'px'
-    gameOverPopup.style.top = titleHeight + 'px'
+    gameOverPopup.style.top = titleHeight + 10 + 'px'
     gameOverPopup.style.width = canvas.width + 'px'
     gameOverPopup.style.height = canvas.height + 'px'
 

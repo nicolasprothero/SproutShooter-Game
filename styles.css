@@ -86,6 +86,18 @@ a {
     user-select: none
 }
 
+#enemyKillFraction {
+    display: block;
+    position: absolute;
+    transform: translate(-50%, 150%);
+    left: 50%;
+    color: #23272a; 
+    padding: 8px; 
+    font-size: 25px; 
+    font-weight: 400;
+    user-select: none
+}
+
 #scoreText {
     display: none;
     position: absolute;
